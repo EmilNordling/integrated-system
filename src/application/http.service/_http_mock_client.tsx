@@ -1,7 +1,6 @@
 import { HttpOption } from './_http_option';
 import { HttpResponse, HttpServiceOption, IHttpService } from './_http';
-import { _mockedResponseData } from './mockResponse';
-import { Instantiation } from 'one-atom';
+import { _mockedResponseData } from './mock_response';
 
 export class HttpMockClient {
   constructor(private readonly realClientRef: IHttpService) {
