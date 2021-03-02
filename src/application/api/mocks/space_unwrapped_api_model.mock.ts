@@ -1,4 +1,4 @@
-import { SpaceUnwrappedApiModel } from '../models/space_unwrapped_api_model';
+import type { SpaceUnwrappedApiModel } from '../models/space_unwrapped_api_model';
 
 const spaceUnwrappedApiModelMock: SpaceUnwrappedApiModel = {
   routes: [

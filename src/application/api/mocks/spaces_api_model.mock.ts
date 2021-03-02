@@ -1,6 +1,6 @@
-import { SpacesApiModel } from '../models/spaces_api_model';
+import type { SpacesApiModel } from '../models/spaces_api_model';
 
-const SpacesApiModelMock: SpacesApiModel = {
+const spacesApiModelMock: SpacesApiModel = {
   spaces: [
     {
       icon: '',
@@ -21,4 +21,4 @@ const SpacesApiModelMock: SpacesApiModel = {
   ],
 };
 
-export default SpacesApiModelMock;
+export default spacesApiModelMock;

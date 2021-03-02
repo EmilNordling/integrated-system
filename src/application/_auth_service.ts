@@ -1,6 +1,6 @@
 import { Instantiation, Singleton } from 'one-atom';
 import { AuthApiService } from './api/auth_api.service';
-import { UserModel } from './api/models/user_model';
+import type { UserModel } from './api/models/user_model';
 
 @Singleton()
 export class AuthService {

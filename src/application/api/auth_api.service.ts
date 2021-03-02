@@ -1,5 +1,5 @@
 import { Singleton, Timer } from 'one-atom';
-import { UserModel } from './models/user_model';
+import type { UserModel } from './models/user_model';
 
 @Singleton()
 export class AuthApiService {

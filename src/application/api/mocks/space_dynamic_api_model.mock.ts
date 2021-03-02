@@ -1,4 +1,4 @@
-import { SpaceDynamicApiModel } from '../models/space_dynamic_api_model';
+import type { SpaceDynamicApiModel } from '../models/space_dynamic_api_model';
 
 const spaceDynamicApiModel: SpaceDynamicApiModel = {
   elements: [],
