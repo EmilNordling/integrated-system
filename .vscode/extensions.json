@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"esbenp.prettier-vscode",
+		"orta.vscode-jest",
+		"jpoissonnier.vscode-styled-components",
+		"stkb.rewrap",
+		"streetsidesoftware.code-spell-checker",
+		"dbaeumer.vscode-eslint",
+		"editorconfig.editorconfig",
+		"firefox-devtools.vscode-firefox-debug",
+		"msjsdiag.debugger-for-chrome",
+		"msjsdiag.debugger-for-edge",
+	]
+}
