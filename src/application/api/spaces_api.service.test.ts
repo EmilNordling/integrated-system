@@ -1,5 +1,5 @@
 import { Instantiation } from 'one-atom';
-import { mockResponse } from '../http.service/mockResponse';
+import { mockResponse } from '../http.service/mock_response';
 import { SpacesApiService } from './spaces_api.service';
 
 test('asserts that service is resolved', () => {
