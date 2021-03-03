@@ -1,5 +1,5 @@
 import { Instantiation, Singleton } from 'one-atom';
-import { HttpService } from '../http.service/mod';
+import { HttpService } from '../services/http.service/mod';
 import { ApiControllerBase } from './_api_controller_base';
 import type { SpacesApiModel } from './models/spaces_api_model';
 import type { SpaceUnwrappedApiModel } from './models/space_unwrapped_api_model';
