@@ -1,7 +1,9 @@
-import { Instantiation, Presentation, Scoped } from 'one-atom';
-import { SpacesApiService } from '../api/spaces_api.service';
-import type { SpaceApiModel } from '../api/models/space_api_model';
 import type { AppModel } from './app.controller';
+import type { SpaceApiModel } from '@api/models/space_api_model';
+import { SpacesApiService } from '@api/spaces_api.service';
+import { Presentation } from '@modules/presentation/mod';
+import { Scoped } from '@modules/rdi/attributes';
+import { __registerMetaData } from '@modules/rdi/meta';
 
 export type AppPresentationModel = {
   apps: AppModel[];
@@ -26,4 +28,4 @@ export class AppsController {
   }
 }
 // A vite plugin will be added later
-Instantiation.__registerMetaData(AppsController, [SpacesApiService]);
+__registerMetaData(AppsController, [SpacesApiService]);

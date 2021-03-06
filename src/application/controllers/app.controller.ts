@@ -1,6 +1,8 @@
-import { Instantiation, Presentation, Scoped } from 'one-atom';
-import { SpaceUnwrappedEntryApiModel } from '../api/models/space_unwrapped_entry_api_model';
-import { SpacesApiService } from '../api/spaces_api.service';
+import type { SpaceUnwrappedEntryApiModel } from '@api/models/space_unwrapped_entry_api_model';
+import { SpacesApiService } from '@api/spaces_api.service';
+import { Presentation } from '@modules/presentation/mod';
+import { Scoped } from '@modules/rdi/attributes';
+import { __registerMetaData } from '@modules/rdi/meta';
 
 export interface AppModel {
   id: string;
@@ -39,4 +41,4 @@ export class AppController {
   }
 }
 // A vite plugin will be added later
-Instantiation.__registerMetaData(AppController, [SpacesApiService]);
+__registerMetaData(AppController, [SpacesApiService]);

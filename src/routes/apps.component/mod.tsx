@@ -1,7 +1,7 @@
-import { useService } from 'one-atom';
 import { useEffect } from 'react';
-import { AppsController } from '../../application/controllers/apps.controller';
-import { addDashboardStyle } from '../../modules/add_dashboard_style';
+import { AppsController } from '@controllers/apps.controller';
+import { addDashboardStyle } from '@modules/add_dashboard_style';
+import { useService } from '@modules/rdi/use_service';
 
 interface Props {}
 

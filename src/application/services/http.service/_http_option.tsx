@@ -1,4 +1,4 @@
-import { Mock, HttpServiceOption } from './_http';
+import type { Mock, HttpServiceOption } from './_http';
 
 interface OptionSpecification<T> {
   mock?: Mock<T>;

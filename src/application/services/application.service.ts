@@ -1,4 +1,4 @@
-import { Singleton } from 'one-atom';
+import { Singleton } from '@modules/rdi/mod';
 
 @Singleton()
 export class ApplicationService {

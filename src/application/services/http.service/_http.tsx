@@ -1,5 +1,3 @@
-// Todo move IHttpService and HttpMockClient to one-atom repo
-
 export type Payload = null | string | number | Record<string, unknown>;
 
 export type HttpResponse<T> = Promise<T>;

@@ -1,6 +1,6 @@
 import { HttpOption } from './_http_option';
-import { HttpResponse, HttpServiceOption, IHttpService } from './_http';
-import { _mockedResponseData } from './mock_response';
+import type { HttpResponse, HttpServiceOption, IHttpService } from './_http';
+import { __mockedResponseData } from './mock_response';
 
 export class HttpMockClient {
   constructor(private readonly realClientRef: IHttpService) {
@@ -58,9 +58,9 @@ export class HttpMockClient {
   }
 
   private exhaustMockResponse<T>(key: string): T | null {
-    if (_mockedResponseData[key]) {
-      const response = _mockedResponseData[key] as T;
-      delete _mockedResponseData[key];
+    if (__mockedResponseData[key]) {
+      const response = __mockedResponseData[key] as T;
+      delete __mockedResponseData[key];
 
       return response;
     }

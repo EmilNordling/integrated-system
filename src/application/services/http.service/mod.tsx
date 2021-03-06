@@ -1,7 +1,8 @@
-import { Singleton, Timer } from 'one-atom';
+import { Singleton } from '@modules/rdi/mod';
 import { HttpOption } from './_http_option';
 import { HttpMockClient } from './_http_mock_client';
 import { HttpServiceOption, Methods, IHttpService, Payload } from './_http';
+import { Timer } from '@modules/timer';
 
 @Singleton()
 export class HttpService implements IHttpService {

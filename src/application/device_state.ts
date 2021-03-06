@@ -1,4 +1,4 @@
-import { Presentation } from 'one-atom';
+import { Presentation } from '@modules/presentation/presentation';
 import { IS_IOS, IS_MOBILE } from '../constants';
 
 let isMobile: boolean | null = null;

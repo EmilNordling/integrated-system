@@ -1,6 +1,7 @@
 {
   "include": ["./src"],
   "compilerOptions": {
+    "baseUrl": "src",
     "jsx": "react-jsx",
     "module": "ESNext",
     "target": "ESNext",
@@ -21,5 +22,12 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@api/*": ["application/api/*"],
+      "@controllers/*": ["application/controllers/*"],
+      "@services/*": ["application/services/*"],
+      "@components/*": ["components/*"],
+    }
   },
 }

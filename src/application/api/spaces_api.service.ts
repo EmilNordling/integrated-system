@@ -1,9 +1,10 @@
-import { Instantiation, Singleton } from 'one-atom';
 import { HttpService } from '../services/http.service/mod';
 import { ApiControllerBase } from './_api_controller_base';
 import type { SpacesApiModel } from './models/spaces_api_model';
 import type { SpaceUnwrappedApiModel } from './models/space_unwrapped_api_model';
 import type { SpaceDynamicApiModel } from './models/space_dynamic_api_model';
+import { Singleton } from '@modules/rdi/attributes';
+import { __registerMetaData } from '@modules/rdi/meta';
 
 @Singleton()
 export class SpacesApiService extends ApiControllerBase {
@@ -45,4 +46,4 @@ export class SpacesApiService extends ApiControllerBase {
   }
 }
 // A vite plugin will be added later
-Instantiation.__registerMetaData(SpacesApiService, [HttpService]);
+__registerMetaData(SpacesApiService, [HttpService]);
