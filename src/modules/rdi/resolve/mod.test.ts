@@ -2,7 +2,7 @@ import { Scoped, Singleton, Transient } from '../attributes';
 import { __registerMetaData } from '../meta';
 import { resolve } from './mod';
 import { flushAll, flushRegisteredServices, flushSingletons } from '../_flush';
-import { register } from '../_register';
+import { register } from '../register';
 
 afterEach(() => {
   flushAll();

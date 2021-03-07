@@ -1,7 +1,7 @@
 import { Singleton } from './attributes';
 import { resolve } from './resolve/mod';
 import { flushAll } from './_flush';
-import { register } from './_register';
+import { register } from './register';
 
 it('should not use same singleton instances after a flush', () => {
   @Singleton()

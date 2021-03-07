@@ -1,4 +1,4 @@
-import { register } from './_register';
+import { register } from './register';
 import { Ctor, GenericClassDecorator, Lifetimes } from './_common';
 
 /**

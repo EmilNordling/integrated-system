@@ -1,4 +1,9 @@
-import * as RDI from './resolve/mod';
+import { resolve } from './resolve/mod';
+import { register } from './register';
 
 export * from './attributes';
-export { RDI };
+
+export const RDI = Object.freeze({
+  resolve,
+  register,
+});

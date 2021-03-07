@@ -2,14 +2,15 @@ import { registeredServices, Registration } from './_registration';
 import { Ctor, Lifetimes } from './_common';
 
 interface ReplaceWith<T> {
-  useClass?: Ctor<T>;
+  useClass?: Ctor<Partial<T>>;
   lifeTimes?: Lifetimes;
 }
+
 /**
  * Register a class to be used as a service. If the replace parameter is
  * passed it'll override any previously registered service (works for any lifetime).
  */
-export function register<T>(service: Ctor<T>, replace?: ReplaceWith<any>): void {
+export function register<T>(service: Ctor<T>, replace?: ReplaceWith<T>): void {
   const registeredService = registeredServices.get(service);
 
   if (replace?.useClass) {
@@ -21,7 +22,7 @@ export function register<T>(service: Ctor<T>, replace?: ReplaceWith<any>): void 
     return;
   }
 
-  if (registeredService === undefined) {
+  if (registeredService == null) {
     registeredServices.set(service, new Registration(service, service, { lifeTime: replace?.lifeTimes ?? Lifetimes.Singleton }));
   }
 }
