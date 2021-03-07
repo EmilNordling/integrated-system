@@ -1,6 +1,6 @@
 import { Singleton } from './attributes';
 import { __setCustomLookUp } from './meta';
-import { resolve } from './resolve';
+import { resolve } from './resolve/mod';
 
 // Have this at the bottom since there's not reset of __setCustomLookUp
 xit('emitDecoratorMetadata should work', () => {

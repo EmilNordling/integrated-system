@@ -1,4 +1,4 @@
-import { Ctor, Token } from './_types';
+import { Ctor, Token } from './_common';
 
 const metaData = new Map<Token, Ctor<unknown>[]>();
 

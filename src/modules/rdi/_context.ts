@@ -1,4 +1,4 @@
-import type { Token } from './_types';
+import type { Token } from './_common';
 
 export class Context<T> {
   private readonly instances = new Map<Token, T>();

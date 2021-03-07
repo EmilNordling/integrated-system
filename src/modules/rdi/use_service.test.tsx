@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { flushAll } from './_flush';
 import { Scoped, Singleton, Transient } from './attributes';
 import { useService } from './use_service';
-import type { Ctor } from './_types';
+import type { Ctor } from './_common';
 
 afterEach(() => {
   flushAll();

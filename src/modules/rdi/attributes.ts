@@ -1,5 +1,5 @@
 import { register } from './_register';
-import { Ctor, GenericClassDecorator, Lifetimes } from './_types';
+import { Ctor, GenericClassDecorator, Lifetimes } from './_common';
 
 /**
  * Registers a class as a service with a Singleton lifetime.

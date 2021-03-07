@@ -1,4 +1,4 @@
-import type { Token } from './_types';
+import type { Token } from './_common';
 
 class Node<T> {
   public readonly incoming = new Map<Token, Node<T>>();

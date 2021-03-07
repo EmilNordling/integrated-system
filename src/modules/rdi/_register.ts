@@ -1,5 +1,5 @@
 import { registeredServices, Registration } from './_registration';
-import { Ctor, Lifetimes } from './_types';
+import { Ctor, Lifetimes } from './_common';
 
 interface ReplaceWith<T> {
   useClass?: Ctor<T>;

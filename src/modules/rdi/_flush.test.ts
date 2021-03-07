@@ -1,5 +1,5 @@
 import { Singleton } from './attributes';
-import { resolve } from './resolve';
+import { resolve } from './resolve/mod';
 import { flushAll } from './_flush';
 import { register } from './_register';
 

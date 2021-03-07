@@ -1,4 +1,4 @@
-import type { Ctor, Lifetimes, Token } from './_types';
+import type { Ctor, Lifetimes, Token } from './_common';
 
 export class Registration<T> {
   constructor(

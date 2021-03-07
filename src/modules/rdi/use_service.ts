@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { resolve } from './resolve';
-import type { Ctor } from './_types';
+import { resolve } from './resolve/mod';
+import type { Ctor } from './_common';
 
 /**
  * Returns an instance, during the process all of its dependencies will also be created.
