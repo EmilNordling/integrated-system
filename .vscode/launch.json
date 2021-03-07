@@ -5,42 +5,24 @@
       "name": "Launch in Chrome",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:8000",
+      "url": "http://localhost:3000",
       "webRoot": "${workspaceRoot}/src",
       "breakOnLoad": true,
-      "sourceMaps": true,
-      "sourceMapPathOverrides": {
-        "webpack:///*": "${webRoot}/../*",
-        "webpack:///./*": "${webRoot}/../*",
-        "webpack:///src/*": "${webRoot}/../src/*",
-        "webpack:///./~/*": "${webRoot}/../node_modules/*"
-      }
+      "sourceMaps": true
     },
     {
       "name": "Launch in Edge",
       "type": "pwa-msedge",
       "request": "launch",
-      "url": "http://localhost:8000",
+      "url": "http://localhost:3000",
       "webRoot": "${workspaceRoot}/src",
-      "sourceMaps": true,
-      "sourceMapPathOverrides": {
-        "webpack:///*": "${webRoot}/../*",
-        "webpack:///./*": "${webRoot}/../*",
-        "webpack:///src/*": "${webRoot}/../src/*",
-        "webpack:///./~/*": "${webRoot}/../node_modules/*"
-      }
+      "sourceMaps": true
     },
     {
       "name": "Launch in FireFox",
       "type": "firefox",
       "request": "launch",
-      "url": "http://localhost:8000",
-      "pathMappings": [
-        {
-          "url": "webpack:///src",
-          "path": "${workspaceFolder}/src"
-        }
-      ]
+      "url": "http://localhost:3000"
     }
   ]
 }
