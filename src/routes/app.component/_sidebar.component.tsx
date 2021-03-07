@@ -4,6 +4,7 @@ import { usePresentation } from '@modules/presentation/use_presentation';
 import type { SpaceUnwrappedEntryApiModel } from '@api/models/space_unwrapped_entry_api_model';
 import { Icon } from '@components/icon.component';
 import { NavLink } from 'react-router-dom';
+import { FocusRing } from 'react-focus-rings';
 
 interface Props {
   controller: AppController;
@@ -55,12 +56,14 @@ function retrieveIcon(iconIndex: string): JSX.Element {
 
 function Item({ model }: { model: SpaceUnwrappedEntryApiModel }): JSX.Element {
   return (
-    <elements.item to={`./${model.routeTo}`} end={true} caseSensitive={false}>
-      <div className="inner">
-        {retrieveIcon(model.icon)}
-        <span>{model.title}</span>
-      </div>
-    </elements.item>
+    <FocusRing>
+      <elements.item to={`./${model.routeTo}`} end={true} caseSensitive={false}>
+        <div className="inner">
+          {retrieveIcon(model.icon)}
+          <span>{model.title}</span>
+        </div>
+      </elements.item>
+    </FocusRing>
   );
 }
 
