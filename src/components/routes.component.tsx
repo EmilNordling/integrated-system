@@ -7,8 +7,18 @@ import { BrowserRouter } from 'react-router-dom';
 
 export interface Props {}
 
-function lazyLoadLinkedApps(): JSX.Element {
-  const LazyComponent = lazy(() => import('../routes/apps.component/mod').then((module) => ({ default: module['Apps'] })));
+function lazyLoadApp(): JSX.Element {
+  const LazyComponent = lazy(() => import('../routes/app.component/mod').then((module) => ({ default: module['App'] })));
+
+  return (
+    <Suspense fallback={'...'}>
+      <LazyComponent />
+    </Suspense>
+  );
+}
+
+function lazyLoadHome(): JSX.Element {
+  const LazyComponent = lazy(() => import('../routes/home.component/mod').then((module) => ({ default: module['Home'] })));
 
   return (
     <Suspense fallback={'...'}>
@@ -22,7 +32,8 @@ export function Routes(_: Props): JSX.Element {
     <BrowserRouter>
       <RRoutes>
         <Route path="*" element={<div>404 main</div>} />
-        <Route path="/app/*" element={lazyLoadLinkedApps()} />
+        <Route path="/" element={lazyLoadHome()} />
+        <Route path="/app/*" element={lazyLoadApp()} />
       </RRoutes>
     </BrowserRouter>
   );

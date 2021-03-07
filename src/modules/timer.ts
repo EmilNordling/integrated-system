@@ -1,12 +1,26 @@
-/* eslint-disable @typescript-eslint/no-explicit-any*/
-
+export type Disposer = () => void;
+type GetArgumentTypes<T> = T extends (...x: infer argumentsType) => any ? argumentsType : never;
 type AnyFunction = (args?: any) => any;
 
 export class Timer {
-  private disposers = new Map<number, Timer.Disposer>();
+  private disposers = new Map<number, Disposer>();
   private registeredId = 0;
 
-  public wait(callback: AnyFunction, duration: number): Timer.Disposer {
+  public static wait(...args: GetArgumentTypes<Timer['wait']>): Disposer {
+    const time = new Timer();
+    time.wait(...args);
+
+    return time.flush.bind(time);
+  }
+
+  public static repeat(...args: GetArgumentTypes<Timer['repeat']>): Disposer {
+    const time = new Timer();
+    time.repeat(...args);
+
+    return time.flush.bind(time);
+  }
+
+  public wait(callback: AnyFunction, duration: number): Disposer {
     const timeout = setTimeout(callback, duration);
 
     const disposer = (): void => {
@@ -16,7 +30,7 @@ export class Timer {
     return this.registerDisposer(disposer);
   }
 
-  public repeat(callback: AnyFunction, duration: number, callOnceOnInvoke = false): Timer.Disposer {
+  public repeat(callback: AnyFunction, duration: number, callOnceOnInvoke = false): Disposer {
     if (callOnceOnInvoke) {
       callback();
     }
@@ -34,7 +48,7 @@ export class Timer {
     this.disposers.forEach((disposer) => disposer());
   }
 
-  private registerDisposer(disposer: Timer.Disposer): Timer.Disposer {
+  private registerDisposer(disposer: Disposer): Disposer {
     const localId = this.registeredId++;
 
     this.disposers.set(localId, disposer);
@@ -44,27 +58,5 @@ export class Timer {
 
       disposer();
     };
-  }
-}
-
-/**
- * change this
- */
-export namespace Timer {
-  export type Disposer = () => void;
-  type GetArgumentTypes<T> = T extends (...x: infer argumentsType) => any ? argumentsType : never;
-
-  export function wait(...args: GetArgumentTypes<Timer['wait']>): Disposer {
-    const time = new Timer();
-    time.wait(...args);
-
-    return time.flush.bind(time);
-  }
-
-  export function repeat(...args: GetArgumentTypes<Timer['repeat']>): Disposer {
-    const time = new Timer();
-    time.repeat(...args);
-
-    return time.flush.bind(time);
   }
 }

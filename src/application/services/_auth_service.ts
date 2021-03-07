@@ -1,7 +1,7 @@
 import { Singleton } from '@modules/rdi/mod';
 import { __registerMetaData } from '@modules/rdi/meta';
-import { AuthApiService } from '../api/auth_api.service';
-import type { UserModel } from '../api/models/user_model';
+import { AuthApiService } from '@api/auth_api.service';
+import type { UserModel } from '@api/models/user_model';
 
 @Singleton()
 export class AuthService {

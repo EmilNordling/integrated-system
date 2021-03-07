@@ -12,5 +12,5 @@
   margin: 0;
   padding: 0;
   border-radius: var(--__adaptive-focus-ring-radius, 4px);
-  box-shadow: 0 0 0 2px var(--__adaptive-focus-ring-color, var(--focus-primary, #00bbff));
+  box-shadow: 0 0 0 3px var(--__adaptive-focus-ring-color, var(--focus-primary, rgb(46, 46, 46)));
 }

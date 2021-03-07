@@ -2,7 +2,7 @@ import { useState, InputHTMLAttributes, forwardRef } from 'react';
 import { FocusRing } from 'react-focus-rings';
 import styled from 'styled-components';
 
-export interface OneAtomBaseInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface BaseInputProps extends InputHTMLAttributes<HTMLInputElement> {
   ref?: any;
   className?: string;
   type?:
@@ -44,15 +44,15 @@ const elements = {
     background: none;
     -webkit-tap-highlight-color: transparent;
     outline: none;
-    color: var(--oa-input-subtle, #888);
+    color: var(--input-subtle, #888);
 
     &:focus:not(:disabled) {
-      color: var(--oa-input-clr, #ffffff);
+      color: var(--input-clr, #ffffff);
     }
   `,
 };
 
-export const BaseInput: FC<OneAtomBaseInputProps> = forwardRef(function OneAtom_BaseInput(props, ref) {
+export const BaseInput: FC<BaseInputProps> = forwardRef(function _BaseInput(props, ref) {
   const {
     // Takes out these values to be used as variables here.
     className,
@@ -69,7 +69,7 @@ export const BaseInput: FC<OneAtomBaseInputProps> = forwardRef(function OneAtom_
   if (disabled && isFocused) setIsFocus(false);
 
   return (
-    <FocusRing>
+    <FocusRing offset={-1}>
       <elements.baseInput
         ref={ref}
         aria-invalid={true}

@@ -1,20 +1,14 @@
 :root {
   /* Global */
-  --global-background: #1d1d1d;
-  --global-foreground: #131313;
-  --global-foreground-darker: #111111;
-  --global-foreground-hover: #1d1d1d;
-  --global-text: #fdfdfd;
-  --global-text-dimmed: rgb(170, 170, 170);
-  --global-tint: #0099ff;
-  --global-divider: #252525;
-  --global-empty-shape: #252525;
+  --global-background: #fff;
+  --global-foreground: #fff;
+  --global-border: #e5e5e5;
 
-  /* One Atom overrides */
-  --oa-shimmer-bg-from: #181818;
-  --oa-shimmer-bg-to: #151515;
-  --oa-text-color-heading: var(--global-text);
+  --global-text: #111;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Overrides */
+  --shimmer-bg-from: #181818;
+  --shimmer-bg-to: #151515;
+
+  --text-color-heading: var(--global-text);
 }

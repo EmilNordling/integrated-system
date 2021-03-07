@@ -1,14 +1,18 @@
 import styled from 'styled-components';
-import { BaseButton, OneAtomBaseButtonProps } from './base_button.component';
+import { BaseButton, BaseButtonProps } from './base_button.component/mod';
 import { SizeProps, Size } from './size.component';
 
-export interface ButtonProps extends OneAtomBaseButtonProps, SizeProps {
+export interface ButtonProps extends BaseButtonProps, SizeProps {
   round?: boolean;
-  children?: JSX.Element | JSX.Element[];
 }
 
-const elementsShared = {
-  button: styled(BaseButton)`
+const elements = {
+  content: styled.div`
+    display: contents;
+
+    --focus-primary: red;
+  `,
+  actionButton: styled(BaseButton)`
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -20,26 +24,22 @@ const elementsShared = {
     padding: 0px 14px;
     box-sizing: border-box;
     font-size: 0.8125rem; // 13px
-    transition: background-color 0.3s ease;
+    transition: filter 0.3s ease;
+    color: var(--button-action-clr, #ffffff) !important;
+    background: var(--button-action-bg, #0099ff) !important;
 
     &.round {
-      font-size: 16px;
+      font-size: 13px;
       padding: 0;
     }
-  `,
-};
 
-const elements = {
-  actionButton: styled(elementsShared.button)`
-    color: var(--oa-button-action-clr, #ffffff);
-    background: var(--oa-button-action-bg, #333333);
-
-    &:hover:not(:disabled) {
-      filter: brightness(90%) hue-rotate(2deg);
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      filter: brightness(115%) hue-rotate(3deg);
     }
 
     &:active:not(:disabled) {
-      filter: brightness(80%) hue-rotate(2deg);
+      filter: brightness(95%) hue-rotate(3deg);
     }
   `,
 };
@@ -48,10 +48,12 @@ export function Button({ children, fluid, className, round, ...rest }: ButtonPro
   const _className = `${className ?? ''} ${round ? 'round' : ''}`;
 
   return (
-    <Size fluid={fluid}>
-      <elements.actionButton className={_className} {...rest}>
-        {children}
-      </elements.actionButton>
-    </Size>
+    <elements.content>
+      <Size fluid={fluid}>
+        <elements.actionButton className={_className} {...rest}>
+          {children}
+        </elements.actionButton>
+      </Size>
+    </elements.content>
   );
 }

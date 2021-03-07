@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export interface SizeProps {
   className?: string;
   fluid?: boolean;
-  children?: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[] | string;
 }
 
 const elements = {

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-interface*/
 import { forwardRef } from 'react';
 import styled from 'styled-components';
-import { BaseInput, OneAtomBaseInputProps } from './base_input.component';
+import { BaseInput, BaseInputProps } from './base_input.component';
 import { Size, SizeProps } from './size.component';
 
-export interface OneAtomInputProps extends OneAtomBaseInputProps, Omit<SizeProps, 'children'> {}
+export interface InputProps extends BaseInputProps, Omit<SizeProps, 'children'> {}
 
 const elements = {
   label: styled.label`
@@ -18,7 +18,7 @@ const elements = {
     padding: 0px 16px;
     box-sizing: border-box;
     border-radius: 10px;
-    background-color: var(--oa-input-bg, rgb(51, 51, 51));
+    background-color: var(--input-bg, rgb(51, 51, 51));
     width: 100%;
     font-size: 0.8125rem; // 13px
     line-height: 1.05875; // 16.94px
@@ -26,7 +26,7 @@ const elements = {
   `,
 };
 
-export const Input: FC<OneAtomInputProps> = forwardRef(function Input({ fluid, className, ...rest }, ref) {
+export const Input: FC<InputProps> = forwardRef(function Input({ fluid, className, ...rest }, ref) {
   return (
     <Size fluid={fluid} className={className}>
       <elements.label>

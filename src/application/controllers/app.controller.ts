@@ -4,40 +4,38 @@ import { Presentation } from '@modules/presentation/mod';
 import { Scoped } from '@modules/rdi/attributes';
 import { __registerMetaData } from '@modules/rdi/meta';
 
-export interface AppModel {
-  id: string;
-  name: string;
-  selected: boolean;
-}
-
 export type AppPresentationModel = {
   routes: SpaceUnwrappedEntryApiModel[];
 };
 
 @Scoped()
 export class AppController {
-  public readonly staticEntries: SpaceUnwrappedEntryApiModel[] = [
-    {
-      id: 'static_home',
-      icon: 'eva_wifi_off',
-      routeTo: '',
-      title: 'Home',
-    },
-    {
-      id: 'static_analytic',
-      icon: 'eva_trending',
-      routeTo: '/analytic',
-      title: 'analytic',
-    },
-  ];
   public readonly presentation = Presentation.createConcurrent<AppPresentationModel>();
 
   constructor(private readonly spacesApiService: SpacesApiService) {
-    // Empty
+    this.presentation.suspend(this.spacesApiService.getUnwrappedDataFor('...'), ({ routes }) =>
+      this.modelToPresentationMapping(routes),
+    );
   }
 
-  public connectApp(app: AppModel): void {
-    this.presentation.suspend(this.spacesApiService.getUnwrappedDataFor(app.id));
+  private modelToPresentationMapping(routes: SpaceUnwrappedEntryApiModel[]): AppPresentationModel {
+    return {
+      routes: [
+        {
+          id: 'static_home',
+          icon: 'eva_wifi_off',
+          routeTo: '',
+          title: 'Home',
+        },
+        {
+          id: 'static_analytic',
+          icon: 'eva_trending',
+          routeTo: '/analytic',
+          title: 'analytic',
+        },
+        ...routes,
+      ],
+    };
   }
 }
 // A vite plugin will be added later

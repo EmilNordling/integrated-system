@@ -1,14 +1,15 @@
 import { useRef, useState } from 'react';
 import { FocusRing } from 'react-focus-rings';
 import styled from 'styled-components';
-import { focusContext } from '../modules/focus_context';
+import { focusContext } from './_focus_context';
 
-export interface OneAtomBaseButtonProps {
+export interface BaseButtonProps {
   label?: string;
   tabIndex?: number;
   disabled?: boolean;
   type?: 'submit' | 'reset' | 'button';
   className?: string;
+  children?: JSX.Element | JSX.Element[] | string;
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -36,7 +37,7 @@ export interface OneAtomBaseButtonProps {
 // If you'd want to have buttons with cursors, that's fine, but you'll need to
 // extend the base_button component in order to get that interaction
 const elements = {
-  base_button: styled.button`
+  base: styled.button`
     border: none;
     margin: 0;
     padding: 0;
@@ -52,7 +53,7 @@ const elements = {
   `,
 };
 
-export const BaseButton: FC<OneAtomBaseButtonProps> = function OneAtom_BaseButton({ ...props }) {
+export function BaseButton({ ...props }: BaseButtonProps) {
   // Takes out these values to be used as variables here.
   const {
     children,
@@ -164,8 +165,8 @@ export const BaseButton: FC<OneAtomBaseButtonProps> = function OneAtom_BaseButto
   }
 
   return (
-    <FocusRing>
-      <elements.base_button
+    <FocusRing offset={-1}>
+      <elements.base
         aria-pressed={undefined}
         aria-label={label}
         ref={buttonRef}
@@ -189,7 +190,7 @@ export const BaseButton: FC<OneAtomBaseButtonProps> = function OneAtom_BaseButto
         {...rest}
       >
         {children}
-      </elements.base_button>
+      </elements.base>
     </FocusRing>
   );
-};
+}
