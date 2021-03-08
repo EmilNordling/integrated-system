@@ -10,6 +10,7 @@ interface Props {}
 // const elements = {}
 
 const Sidebar = lazy(() => import('./_sidebar.component').then((module) => ({ default: module['Sidebar'] })));
+const Content = lazy(() => import('./_content.component').then((module) => ({ default: module['Content'] })));
 
 export function App(_: Props): JSX.Element {
   const controller = useService(AppController);
@@ -25,7 +26,11 @@ export function App(_: Props): JSX.Element {
           <Sidebar controller={controller} />
         </Suspense>
       }
-      contentSlot={<Text.header>Content</Text.header>}
+      contentSlot={
+        <Suspense fallback={'...'}>
+          <Content controller={controller} />
+        </Suspense>
+      }
     />
   );
 }

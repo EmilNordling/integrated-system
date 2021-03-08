@@ -22,7 +22,7 @@ const elements = {
     border-right: 1px solid var(--global-border);
     flex-direction: column;
     background: var(--global-foreground);
-    background: #fafafa;
+
     padding: 15px 15px 0;
   `,
   content: styled.div`
@@ -32,6 +32,7 @@ const elements = {
     overflow: auto;
     flex-direction: column;
     -webkit-overflow-scrolling: touch;
+    margin: 48px;
   `,
 };
 
