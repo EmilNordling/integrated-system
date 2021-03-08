@@ -7,11 +7,6 @@ export interface ButtonProps extends BaseButtonProps, SizeProps {
 }
 
 const elements = {
-  content: styled.div`
-    display: contents;
-
-    --focus-primary: red;
-  `,
   actionButton: styled(BaseButton)`
     border-radius: 15px;
     display: flex;
@@ -33,6 +28,10 @@ const elements = {
       padding: 0;
     }
 
+    &:disabled {
+      opacity: 0.5;
+    }
+
     &:hover:not(:disabled),
     &:focus:not(:disabled) {
       filter: brightness(115%) hue-rotate(3deg);
@@ -48,12 +47,10 @@ export function Button({ children, fluid, className, round, ...rest }: ButtonPro
   const _className = `${className ?? ''} ${round ? 'round' : ''}`;
 
   return (
-    <elements.content>
-      <Size fluid={fluid}>
-        <elements.actionButton className={_className} {...rest}>
-          {children}
-        </elements.actionButton>
-      </Size>
-    </elements.content>
+    <Size fluid={fluid}>
+      <elements.actionButton className={_className} {...rest}>
+        {children}
+      </elements.actionButton>
+    </Size>
   );
 }

@@ -44,10 +44,10 @@ const elements = {
     background: none;
     -webkit-tap-highlight-color: transparent;
     outline: none;
-    color: var(--input-subtle, #888);
+    color: var(--input-subtle, #333);
 
     &:focus:not(:disabled) {
-      color: var(--input-clr, #ffffff);
+      color: var(--input-clr, #333);
     }
   `,
 };

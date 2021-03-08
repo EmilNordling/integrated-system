@@ -12,7 +12,8 @@ const elements = {
     display: inline-block;
     width: 100%;
     & > * {
-      width: 100%;
+      width: 100% !important;
+      max-width: 100% !important;
     }
   `,
 };
