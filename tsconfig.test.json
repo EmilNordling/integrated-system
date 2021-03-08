@@ -4,5 +4,4 @@
     "jsx": "react-jsxdev",
     "strict": false,
   },
-  "include": ["src/**/*.d.ts"],
 }
