@@ -15,10 +15,6 @@ const Content = lazy(() => import('./_content.component').then((module) => ({ de
 export function App(_: Props): JSX.Element {
   const controller = useService(AppController);
 
-  useEffect(() => {
-    return addDashboardStyle();
-  }, []);
-
   return (
     <Layout
       sidebarSlot={

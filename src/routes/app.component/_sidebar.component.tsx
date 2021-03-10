@@ -27,7 +27,7 @@ const elements = {
     line-height: 1.2;
 
     &.active {
-      color: #000;
+      color: #0099ff;
     }
 
     &:hover:not(.active) {
