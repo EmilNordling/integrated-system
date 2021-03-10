@@ -5,7 +5,7 @@
 import { Fragment, FC } from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { useState } from 'react';
-import { flushAll } from './_flush';
+import { flushAll } from './flush';
 import { Scoped, Singleton, Transient } from './attributes';
 import { useService } from './use_service';
 import type { Ctor } from './_common';

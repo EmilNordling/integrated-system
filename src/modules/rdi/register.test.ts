@@ -1,7 +1,7 @@
 import { Scoped, Singleton, Transient } from './attributes';
 import { __registerMetaData } from './meta';
 import { resolve } from './resolve/mod';
-import { flushAll } from './_flush';
+import { flushAll } from './flush';
 import { getRegisteredService, register } from './register';
 import { Lifetimes } from './_common';
 
