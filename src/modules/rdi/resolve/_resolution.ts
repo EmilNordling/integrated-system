@@ -1,4 +1,4 @@
-import { Context, globalContext } from '../_context';
+import type { Context, globalContext } from '../_context';
 import type { Token } from '../_common';
 import type { Graph } from '../_graph';
 import type { Registration } from '../_registration';
@@ -22,5 +22,3 @@ export class Resolution<T> {
     // Empty
   }
 }
-
-export const resolutionMap = new WeakMap<object, Resolution<any>>();

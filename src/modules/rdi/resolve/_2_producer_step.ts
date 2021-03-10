@@ -1,7 +1,7 @@
 import { Context, globalContext } from '../_context';
 import { Lifetimes, Token } from '../_common';
 import { registeredServices } from '../_registration';
-import { ResolutionContext, ResolutionDeps, resolutionMap } from './_resolution';
+import type { Resolution, ResolutionContext, ResolutionDeps } from './_resolution';
 
 // ----------------------------- Producer step -----------------------------
 // This step's responsibility is to either instantiate a service or retrieve
@@ -72,9 +72,7 @@ function retrieveArgs(id: Token, [deps, context]: readonly [deps: ResolutionDeps
   return args;
 }
 
-export function producerStep(resolutionKey: object): void {
-  const resolution = resolutionMap.get(resolutionKey);
-  if (!resolution) throw new Error('oos');
+export function producerStep<T>(resolution: Resolution<T>): void {
   if (resolution.deps == null) throw new Error('steps order are wrong, expected branch -> produce -> retrieve');
 
   const [, resolvingDependenciesBranch] = resolution.deps;

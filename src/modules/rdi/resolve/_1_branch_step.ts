@@ -3,7 +3,7 @@ import { Graph } from '../_graph';
 import { registeredServices } from '../_registration';
 import { Ctor, Lifetimes, Token } from '../_common';
 import type { Dependencies, StackElement } from './_common';
-import { resolutionMap } from './_resolution';
+import type { Resolution } from './_resolution';
 
 // --------- Branch step ---------
 // This step's responsibility is to create a tree data structure of the
@@ -27,11 +27,7 @@ function createStackElement(dependency: Dependencies): StackElement {
   };
 }
 
-export function branchStep(resolutionKey: object): void {
-  const resolution = resolutionMap.get(resolutionKey);
-  if (!resolution) throw new Error('ooc');
-  // WeakMap to hold service references for each service within the branch
-
+export function branchStep<T>(resolution: Resolution<T>): void {
   const dependenciesForEachDependency = new Map<Token, Dependencies[]>();
   const resolvingDependenciesBranch = new Graph<StackElement>((element) => element.id);
 

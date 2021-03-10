@@ -1,13 +1,11 @@
 import { Lifetimes } from '../_common';
-import { resolutionMap } from './_resolution';
+import type { Resolution } from './_resolution';
 
 // ----------------------------- Retrieve step -----------------------------
 // This step's responsibility is to check for the requested instance and
 // return it.
 
-export function retrieveStep<T>(resolutionKey: object) {
-  const resolution = resolutionMap.get(resolutionKey);
-  if (!resolution) throw new Error('oos');
+export function retrieveStep<T>(resolution: Resolution<T>) {
   if (resolution.contexts == null) throw new Error('steps order are wrong, expected branch -> produce -> retrieve');
 
   const [globalContext, scopedContext, [transientRoot, localContext]] = resolution.contexts;
