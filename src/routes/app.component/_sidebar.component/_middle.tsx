@@ -1,18 +1,16 @@
 import styled from 'styled-components';
+import { SpaceUnwrappedEntryApiModel } from '@api/models/space_unwrapped_entry_api_model';
 import { AppController } from '@controllers/app.controller';
-import { usePresentation } from '@modules/presentation/use_presentation';
-import type { SpaceUnwrappedEntryApiModel } from '@api/models/space_unwrapped_entry_api_model';
 import { Icon } from '@components/icon.component';
-import { NavLink } from 'react-router-dom';
+import { usePresentation } from '@modules/presentation/use_presentation';
 import { FocusRing } from 'react-focus-rings';
-
-interface Props {
-  controller: AppController;
-}
+import { NavLink } from 'react-router-dom';
+import type { SyntheticEvent } from 'react';
 
 const elements = {
-  container: styled.ul`
-    width: 100%;
+  middle: styled.div`
+    flex: 1;
+    padding: 15px 15px 0;
   `,
   item: styled(NavLink)`
     min-height: 35px;
@@ -55,9 +53,14 @@ function retrieveIcon(iconIndex: string): JSX.Element {
 }
 
 function Item({ model }: { model: SpaceUnwrappedEntryApiModel }): JSX.Element {
+  function handleClick(event: SyntheticEvent<HTMLAnchorElement>): void {
+    // Disables blur on mouse down (looks nicer)
+    event.preventDefault();
+  }
+
   return (
     <FocusRing>
-      <elements.item to={`./${model.routeTo}`} end={true} caseSensitive={false}>
+      <elements.item onMouseDown={handleClick} to={`./${model.routeTo}`} end={true} caseSensitive={false}>
         <div className="inner">
           {retrieveIcon(model.icon)}
           <span>{model.title}</span>
@@ -67,14 +70,14 @@ function Item({ model }: { model: SpaceUnwrappedEntryApiModel }): JSX.Element {
   );
 }
 
-export function Sidebar({ controller }: Props): JSX.Element {
+export function Middle({ controller }: { controller: AppController }): JSX.Element {
   const presentation = usePresentation(controller.presentation);
 
   return (
-    <elements.container>
+    <elements.middle>
       {presentation.routes.map((x) => (
         <Item key={x.id} model={x} />
       ))}
-    </elements.container>
+    </elements.middle>
   );
 }

@@ -37,7 +37,7 @@ const elements = {
     .sidebar_view {
       overflow: hidden;
       width: 100%;
-      padding: 15px 15px 0;
+      height: 100%;
     }
   `,
   sideBarResize: styled.div`
