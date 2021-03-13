@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import '../_debug_hook';
 import { Flow, FlowPresentation } from './flow_presentation';
-import { MutationFn } from '../data_struct/fixed_size_impl';
+import type { MutationFn } from '../data_struct/fixed_size_impl';
+import type { Disposer, HookFn, Subscribable } from './_common';
 
-type Disposer = () => void;
-
-type HookFn<T> = (changeSet?: Set<keyof T>) => void;
-
-export class ConcurrentPresentation<T extends object> {
+export class ConcurrentPresentation<T extends object> implements Subscribable<T> {
   private readonly state: FlowPresentation<T>;
   private suspender: Promise<void> | null = null;
   private error: unknown | null = null;

@@ -2,12 +2,9 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import '../_debug_hook';
 import { MutationFn, FixedSizeImpl } from '../data_struct/fixed_size_impl';
+import type { Disposer, HookFn, Subscribable } from './_common';
 
-type Disposer = () => void;
-
-type HookFn<T> = (changeSet?: Set<keyof T>) => void;
-
-export class SynchronousPresentation<T extends object> {
+export class SynchronousPresentation<T extends object> implements Subscribable<T> {
   private readonly data: FixedSizeImpl<T>;
   private readonly hooks: Map<symbol, HookFn<T>> = new Map();
 

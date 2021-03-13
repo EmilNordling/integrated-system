@@ -2,10 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import '../_debug_hook';
 import { FixedSizeImpl, MutationFn } from '../data_struct/fixed_size_impl';
-
-type Disposer = () => void;
-
-type HookFn<T> = (changeSet?: Set<keyof T>) => void;
+import type { Disposer, HookFn, Subscribable } from './_common';
 
 export enum Flow {
   ACCESSIBLE,
@@ -21,7 +18,7 @@ interface Specification<T> {
   designatedFlowState?: Flow;
 }
 
-export class FlowPresentation<T extends object> {
+export class FlowPresentation<T extends object> implements Subscribable<T> {
   public error: Error | null = null;
   public flowState: Readonly<Flow> = Flow.UNSET;
   private data: FixedSizeImpl<T> | null = null;
