@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import './_debug_hook';
 import { useEffect, useState } from 'react';
-import { SynchronousPresentation } from './synchronous_presentation';
-import { ConcurrentPresentation } from './concurrent_presentation';
-import { FlowPresentation, CurrPresentationTuple } from './flow_presentation';
+import { ConcurrentPresentation, FlowPresentation, SynchronousPresentation, CurrPresentationTuple } from './subscribable/mod';
 
 export function usePresentation<T extends object>(state: FlowPresentation<T>, deps?: ReadonlyArray<keyof T>): CurrPresentationTuple<T>;
 export function usePresentation<T extends object>(state: ConcurrentPresentation<T>, deps?: ReadonlyArray<keyof T>): Readonly<T>;

@@ -5,9 +5,7 @@
 import { Fragment, FC, Suspense } from 'react';
 import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { Flow, FlowPresentation } from './flow_presentation';
-import { ConcurrentPresentation } from './concurrent_presentation';
-import { SynchronousPresentation } from './synchronous_presentation';
+import { ConcurrentPresentation, FlowPresentation, SynchronousPresentation, Flow } from './subscribable/mod';
 import { usePresentation } from './use_presentation';
 
 describe('observable with Presentation', () => {

@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { ConcurrentPresentation } from './concurrent_presentation';
-import { FlowPresentation } from './flow_presentation';
+import { ConcurrentPresentation, FlowPresentation, SynchronousPresentation } from './subscribable/mod';
 import { Presentation } from './presentation';
-import { SynchronousPresentation } from './synchronous_presentation';
 
 test('asserts SynchronousPresentation is created and added to debug', () => {
   const presentation = Presentation.create({

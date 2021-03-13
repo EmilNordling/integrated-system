@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/ban-types */
-import './_debug_hook';
-import { FixedSizeImpl, MutationFn } from './data_struct/fixed_size_impl';
+import '../_debug_hook';
+import { FixedSizeImpl, MutationFn } from '../data_struct/fixed_size_impl';
 
 type Disposer = () => void;
 

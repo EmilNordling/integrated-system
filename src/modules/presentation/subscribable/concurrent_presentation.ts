@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import './_debug_hook';
+import '../_debug_hook';
 import { Flow, FlowPresentation } from './flow_presentation';
-import { MutationFn } from './data_struct/fixed_size_impl';
+import { MutationFn } from '../data_struct/fixed_size_impl';
 
 type Disposer = () => void;
 

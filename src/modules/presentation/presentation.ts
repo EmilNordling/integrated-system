@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { ConcurrentPresentation } from './concurrent_presentation';
-import { Flow, FlowPresentation } from './flow_presentation';
-import { SynchronousPresentation } from './synchronous_presentation';
+import { ConcurrentPresentation } from './subscribable/mod';
+import { Flow, FlowPresentation } from './subscribable/flow_presentation';
+import { SynchronousPresentation } from './subscribable/synchronous_presentation';
 
 export namespace Presentation {
   export function create<T extends object>(initialValue: T): SynchronousPresentation<T> {
