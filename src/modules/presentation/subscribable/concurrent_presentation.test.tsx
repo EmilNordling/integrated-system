@@ -430,3 +430,36 @@ test('asserts that gracefulDegradation works with initial state', async () => {
 
   await findByText(/broken/i);
 });
+
+test('asserts that isMutable returns correct value', async (done) => {
+  const presentation = new ConcurrentPresentation(getTypicalState());
+
+  presentation.suspend(fakeApi.get(), () => {
+    return {
+      age: 20,
+      userName: 'Robin',
+    };
+  });
+
+  try {
+    expect(presentation.isMutable).toBe(false);
+    presentation.read();
+
+    throw new Error('state was accessible');
+  } catch (promise: unknown | Promise<void>) {
+    if (!(promise instanceof Promise)) {
+      throw new Error('state was not a promise');
+    }
+
+    promise.then(() => {
+      try {
+        expect(presentation.isMutable).toBe(true);
+        done();
+      } catch (error: unknown) {
+        throw error;
+      }
+    });
+
+    jest.runAllTimers();
+  }
+});

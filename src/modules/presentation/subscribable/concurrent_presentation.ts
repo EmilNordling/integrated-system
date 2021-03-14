@@ -5,6 +5,9 @@ import type { MutationFn } from '../data_struct/fixed_size_impl';
 import type { Disposer, HookFn, Subscribable } from './_common';
 
 export class ConcurrentPresentation<T extends object> implements Subscribable<T> {
+  public get isMutable(): boolean {
+    return this.state.flowState === Flow.ACCESSIBLE;
+  }
   private readonly state: FlowPresentation<T>;
   private suspender: Promise<void> | null = null;
   private error: unknown | null = null;
