@@ -7,6 +7,7 @@ import { useService } from '@modules/rdi/use_service';
 import { UiBindingsController } from '@controllers/ui_bindings.controller/mod';
 import type { SyntheticEvent } from 'react';
 import type { ViewStackModel } from '@controllers/ui_bindings.controller/views.controller';
+import { SurfaceApi } from 'application/surface_api';
 
 interface Props {}
 
@@ -74,8 +75,7 @@ function Item({ model }: { model: ViewStackModel }): JSX.Element {
 }
 
 export function Middle(_: Props): JSX.Element {
-  const uiBindings = useService(UiBindingsController);
-  const presentation = usePresentation(uiBindings.views.routes);
+  const presentation = usePresentation(SurfaceApi.ui.views.routes);
 
   return (
     <elements.middle>
