@@ -140,12 +140,13 @@ export function producerStep<T>(resolution: Resolution<T>): void {
 
           if (shouldCreateStorage) {
             resolvedTransientServices.add(parentId, [resolvedTransientInstance]);
-          } else {
-            // The check has already been done above so it's fine to cast this
-            // as a non null
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            resolvedTransientServices.retrieve(parentId)!.push(resolvedTransientInstance);
+            break;
           }
+
+          // The check has already been done above so it's fine to cast this
+          // as a non null
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          resolvedTransientServices.retrieve(parentId)!.push(resolvedTransientInstance);
 
           break;
         }

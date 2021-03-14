@@ -25,7 +25,7 @@ it('should not use same singleton instances after a flush', () => {
   {
     flushAll();
     expect(() => resolve(A)).toThrow();
-    register(A);
+    register(A, { useClass: A });
     const a = resolve(A);
     expect(a.data.nbr).toBe(1);
   }
