@@ -1,11 +1,14 @@
 import styled from 'styled-components';
-import { SpaceUnwrappedEntryApiModel } from '@api/models/space_unwrapped_entry_api_model';
-import { AppController } from '@controllers/app.controller';
 import { Icon } from '@components/icon.component';
 import { usePresentation } from '@modules/presentation/use_presentation';
 import { FocusRing } from 'react-focus-rings';
 import { NavLink } from 'react-router-dom';
+import { useService } from '@modules/rdi/use_service';
+import { UiBindingsController } from '@controllers/ui_bindings.controller/mod';
 import type { SyntheticEvent } from 'react';
+import type { ViewStackModel } from '@controllers/ui_bindings.controller/views.controller';
+
+interface Props {}
 
 const elements = {
   middle: styled.div`
@@ -52,7 +55,7 @@ function retrieveIcon(iconIndex: string): JSX.Element {
   return <IconComponent />;
 }
 
-function Item({ model }: { model: SpaceUnwrappedEntryApiModel }): JSX.Element {
+function Item({ model }: { model: ViewStackModel }): JSX.Element {
   function handleClick(event: SyntheticEvent<HTMLAnchorElement>): void {
     // Disables blur on mouse down (looks nicer)
     event.preventDefault();
@@ -62,7 +65,7 @@ function Item({ model }: { model: SpaceUnwrappedEntryApiModel }): JSX.Element {
     <FocusRing>
       <elements.item onMouseDown={handleClick} to={`./${model.routeTo}`} end={true} caseSensitive={false}>
         <div className="inner">
-          {retrieveIcon(model.icon)}
+          {retrieveIcon(model.icon ?? 'eva_alert')}
           <span>{model.title}</span>
         </div>
       </elements.item>
@@ -70,13 +73,14 @@ function Item({ model }: { model: SpaceUnwrappedEntryApiModel }): JSX.Element {
   );
 }
 
-export function Middle({ controller }: { controller: AppController }): JSX.Element {
-  const presentation = usePresentation(controller.presentation);
+export function Middle(_: Props): JSX.Element {
+  const uiBindings = useService(UiBindingsController);
+  const presentation = usePresentation(uiBindings.views.routes);
 
   return (
     <elements.middle>
-      {presentation.routes.map((x) => (
-        <Item key={x.id} model={x} />
+      {presentation.routes.map((route) => (
+        <Item key={route.id} model={route} />
       ))}
     </elements.middle>
   );

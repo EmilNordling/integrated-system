@@ -1,5 +1,3 @@
-import { AppController } from '@controllers/app.controller';
-import { usePresentation } from '@modules/presentation/use_presentation';
 import { Text } from '@components/text.component';
 import { VStack } from '@components/v_stack.component';
 import { Input } from '@components/input.component';
@@ -7,14 +5,14 @@ import { Button } from '@components/button.component';
 import { HStack } from '@components/h_stack.component';
 import styled from 'styled-components';
 import { Fragment } from 'react';
+import { Editor } from 'routes/editor.component/mod';
 
-interface Props {
-  controller: AppController;
-}
+interface Props {}
 
 const elements = {
   navBar: styled.div`
     margin-top: 45px;
+    z-index: 1;
 
     .navBar_space {
       height: 45px;
@@ -43,18 +41,41 @@ const elements = {
     flex-shrink: 0;
   `,
   view: styled.div`
-    padding: 0 23px;
-    margin-bottom: 40px;
     z-index: 0;
+    flex: 1;
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
   `,
 };
 
-export function Content({ controller }: Props): JSX.Element {
-  const _ = usePresentation(controller.presentation);
+function Test(): JSX.Element {
+  return (
+    <VStack fluid={false} spacing={15}>
+      <Text.header>content</Text.header>
 
+      <HStack fluid={false} spacing={15}>
+        <Input fluid={false} />
+        <Input fluid={false} />
+      </HStack>
+
+      <HStack fluid={false} spacing={15}>
+        <Input fluid={false} />
+        <Input fluid={false} />
+      </HStack>
+
+      <HStack fluid={false} spacing={15}>
+        <Input fluid={false} />
+        <Input fluid={false} />
+      </HStack>
+
+      <Button>send</Button>
+    </VStack>
+  );
+}
+
+export function Content(_: Props): JSX.Element {
   return (
     <Fragment>
       <elements.navBar>
@@ -62,28 +83,8 @@ export function Content({ controller }: Props): JSX.Element {
           <div className="navBar_inner">nav bar</div>
         </div>
       </elements.navBar>
-      <elements.options></elements.options>
       <elements.view>
-        <VStack fluid={false} spacing={15}>
-          <Text.header>content</Text.header>
-
-          <HStack fluid={false} spacing={15}>
-            <Input fluid={false} />
-            <Input fluid={false} />
-          </HStack>
-
-          <HStack fluid={false} spacing={15}>
-            <Input fluid={false} />
-            <Input fluid={false} />
-          </HStack>
-
-          <HStack fluid={false} spacing={15}>
-            <Input fluid={false} />
-            <Input fluid={false} />
-          </HStack>
-
-          <Button>send</Button>
-        </VStack>
+        <Editor />
       </elements.view>
     </Fragment>
   );

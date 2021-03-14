@@ -12,6 +12,7 @@
     "clean": "rimraf www/frontend_artifact"
   },
   "dependencies": {
+    "dayjs": "^1.10.4",
     "framer-motion": "^3.10.0",
     "history": "^5.0.0",
     "react": "^17.0.1",

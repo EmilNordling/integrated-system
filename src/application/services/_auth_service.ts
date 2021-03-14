@@ -7,7 +7,7 @@ import type { UserModel } from '@api/models/user_model';
 export class AuthService {
   public user: UserModel | null = null;
 
-  constructor(private readonly authApiService: AuthApiService) {
+  constructor(private readonly authApi: AuthApiService) {
     // Empty
   }
 
@@ -15,7 +15,7 @@ export class AuthService {
     // todo this is test function, it's currently impl bad
 
     if (this.user === null) {
-      const user = await this.authApiService.get();
+      const user = await this.authApi.get();
       this.user = user;
 
       return user;

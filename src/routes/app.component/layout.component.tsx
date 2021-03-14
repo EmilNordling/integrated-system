@@ -22,11 +22,10 @@ const elements = {
     height: 100vh;
     top: 0;
     position: sticky;
-    z-index: 1;
+    z-index: 2;
 
     .sidebar_fixed {
       display: flex;
-
       height: 100%;
       width: 100%;
       border-right: 1px solid var(--global-border);
@@ -45,7 +44,7 @@ const elements = {
     width: 5px;
     top: 0;
     height: 100%;
-    right: -5px;
+    right: -8px;
     z-index: 10;
     cursor: ew-resize;
     padding: 0 3px;
@@ -60,6 +59,7 @@ const elements = {
 
     &:hover {
       .inner {
+        transition-delay: 0ms;
         opacity: 1;
       }
     }
@@ -67,7 +67,7 @@ const elements = {
     .inner {
       width: 100%;
       height: 100%;
-      background-color: #62c0ff;
+      background-color: #9ad7ff;
       pointer-events: none;
       opacity: 0;
       transition: opacity 250ms ease, background-color 250ms ease;

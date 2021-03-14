@@ -3,7 +3,7 @@ import { AppController } from '@controllers/app.controller';
 import { Middle } from './_middle';
 
 interface Props {
-  controller: AppController;
+
 }
 
 const elements = {
@@ -23,10 +23,10 @@ const elements = {
   `,
 };
 
-export function Sidebar({ controller }: Props): JSX.Element {
+export function Sidebar(_: Props): JSX.Element {
   return (
     <elements.container>
-      <Middle controller={controller} />
+      <Middle />
       <elements.bottom></elements.bottom>
     </elements.container>
   );
