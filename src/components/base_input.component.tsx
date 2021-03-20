@@ -52,14 +52,14 @@ const elements = {
   `,
 };
 
-export const BaseInput: FC<BaseInputProps> = forwardRef(function _BaseInput(props, ref) {
+export const BaseInput: FC<BaseInputProps> = forwardRef(function BaseInput(props, ref) {
   const {
     // Takes out these values to be used as variables here.
     className,
     disabled,
     type,
     // defaults.
-    tabIndex = 0,
+    tabIndex,
     // Spreads anything else.
     ...rest
   } = props;
@@ -69,17 +69,15 @@ export const BaseInput: FC<BaseInputProps> = forwardRef(function _BaseInput(prop
   if (disabled && isFocused) setIsFocus(false);
 
   return (
-    <FocusRing offset={-1}>
-      <elements.baseInput
-        ref={ref}
-        aria-invalid={true}
-        aria-describedby={''}
-        className={className}
-        disabled={disabled}
-        tabIndex={disabled ? -1 : tabIndex}
-        type={type ?? 'text'}
-        {...rest}
-      />
-    </FocusRing>
+    <elements.baseInput
+      ref={ref}
+      aria-invalid={true}
+      aria-describedby={''}
+      className={className}
+      disabled={disabled}
+      tabIndex={disabled ? -1 : tabIndex}
+      type={type ?? 'text'}
+      {...rest}
+    />
   );
 });

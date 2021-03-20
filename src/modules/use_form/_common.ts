@@ -3,6 +3,7 @@ export type FormPrimitiveValue = string | number | boolean;
 export type FormElementLike<T> = {
   name: T;
   type?: string;
+  checked?: boolean;
   value?: string | number | boolean;
   addEventListener<K extends keyof HTMLElementEventMap>(
     type: K,

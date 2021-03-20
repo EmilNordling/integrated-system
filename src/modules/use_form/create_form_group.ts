@@ -12,7 +12,6 @@ export function createFormGroup<T extends FormSpec<any, any>>(controllers: T): F
       const builder: { [key: string]: any } = {};
 
       Object.entries(this.controllers).forEach(([key, value]) => {
-        // @ts-ignore
         builder[key] = value.value;
       });
 

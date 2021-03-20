@@ -79,7 +79,7 @@ export function BaseButton({ ...props }: BaseButtonProps) {
     onTouchStart,
     onMouseMove,
     // defaults.
-    tabIndex = 0,
+    tabIndex,
     type = 'button',
     // Spreads anything else.
     ...rest

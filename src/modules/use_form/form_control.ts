@@ -12,7 +12,7 @@ export type FormSpec<T, K extends FormPrimitiveValue> = {
   [key in keyof T]: FormControl<K>;
 };
 
-export function formControl<T extends FormPrimitiveValue>(defaultValue: T, ...validators: FormValidator[]): FormControl<T> {
+export function formControl<T>(defaultValue: T, ...validators: FormValidator[]): FormControl<T> {
   return {
     initialValue: defaultValue,
     value: defaultValue,

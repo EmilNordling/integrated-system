@@ -4,18 +4,13 @@ import type { FormSpec } from './form_control';
 import type { FormGroup } from './form_group';
 import type { FormElementLike } from './_common';
 
-// @ts-ignore
-// type FormSubmitData<T extends FormPrimitiveValue, K extends FormSpec<K, T>> = {
-//   [key in keyof K]: Extract<FormPrimitiveValue, K[key]['value']>;
-// };
-
 type FormEquals<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2 ? true : false;
 
 const formStates = new WeakMap<FormSpec<any, any>, FormGroup<any>>();
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function hook<T extends FormSpec<any, any>>(control: () => T) {
+// @internal
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/explicit-function-return-type
+export function useFormInternal<T extends FormSpec<any, any>>(control: () => T) {
   const [formState] = useState<T>(control);
 
   let formGroup = formStates.get(formState) as FormGroup<T>;
@@ -27,7 +22,13 @@ export function hook<T extends FormSpec<any, any>>(control: () => T) {
   function handleInputChange(event: HTMLElementEventMap[keyof HTMLElementEventMap]): void {
     if (!(event && event.target)) return;
 
-    const { value, name } = event.target as HTMLInputElement;
+    const { value, name, type, checked } = event.target as HTMLInputElement;
+
+    if (type === 'checkbox') {
+      formState[name].value = checked;
+
+      return;
+    }
 
     formState[name].value = value;
   }
@@ -41,10 +42,14 @@ export function hook<T extends FormSpec<any, any>>(control: () => T) {
         throw new Error(`ref needs the name attribute to be set`);
       }
 
-      ref.value = formState[ref.name].value;
+      if (ref.type === 'checkbox') {
+        ref.checked = formState[ref.name].value;
+      } else {
+        ref.value = formState[ref.name].value;
+      }
 
       if (!formGroup.refs[ref.name]) {
-        ref.addEventListener('input', handleInputChange);
+        ref.addEventListener('change', handleInputChange);
 
         formGroup.refs[ref.name] = ref;
       }
@@ -62,7 +67,7 @@ export function hook<T extends FormSpec<any, any>>(control: () => T) {
   useEffect(() => {
     return () => {
       Object.values(formGroup.refs).forEach((ref) => {
-        ref.removeEventListener('input', handleInputChange);
+        ref.removeEventListener('change', handleInputChange);
       });
     };
   }, []);
