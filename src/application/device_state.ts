@@ -1,4 +1,4 @@
-import { Presentation } from '@modules/presentation/presentation';
+import { Presentation } from '@modules/presentation/mod';
 import { IS_IOS, IS_MOBILE } from '../constants';
 
 let isMobile: boolean | null = null;

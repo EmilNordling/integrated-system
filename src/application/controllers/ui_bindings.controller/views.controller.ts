@@ -1,5 +1,5 @@
 import { SpacesApiService } from '@api/spaces_api.service';
-import { Presentation } from '@modules/presentation/presentation';
+import { Presentation } from '@modules/presentation/mod';
 import { Singleton } from '@modules/rdi/attributes';
 import { __registerMetaData } from '@modules/rdi/meta';
 import { ApplicationService, BootCycleEvents } from '@services/application.service';
