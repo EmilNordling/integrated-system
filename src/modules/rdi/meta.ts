@@ -1,13 +1,13 @@
 import { Ctor, Token } from './_common';
 
-const metaData = new Map<Token, Ctor<unknown>[]>();
+const metadata = new Map<Token, Ctor<unknown>[]>();
 
-export function __registerMetaData(token: Token, deps: Ctor<unknown>[]): void {
-  metaData.set(token, deps);
+export function __sprinkelMetaData(token: Token, deps: Ctor<unknown>[]): void {
+  metadata.set(token, deps);
 }
 
 export function __getMetadata(token: Token): Ctor<unknown>[] {
-  return metaData.get(token) ?? [];
+  return metadata.get(token) ?? [];
 }
 
 export function __setCustomLookUp(fn: (token: any) => any): void {

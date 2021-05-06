@@ -4,6 +4,7 @@ built/*
 target/*
 **/frontend_artifact/*
 **/dist/*
+**/videos/*
 **/.DS_Store
 coverage/
 yarn-error.log

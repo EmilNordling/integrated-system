@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { register } from './register';
 import { Ctor, GenericClassDecorator, Lifetimes } from './_common';
 

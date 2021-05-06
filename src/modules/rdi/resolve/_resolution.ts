@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Context, globalContext } from '../_context';
 import type { Token } from '../_common';
 import type { Graph } from '../_graph';

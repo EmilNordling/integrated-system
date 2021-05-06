@@ -1,5 +1,5 @@
 import { Scoped, Singleton, Transient } from '../attributes';
-import { __registerMetaData } from '../meta';
+import { __sprinkelMetaData } from '../meta';
 import { resolve } from './mod';
 import { flushAll, flushRegisteredServices, flushSingletons } from '../flush';
 import { register } from '../register';
@@ -32,7 +32,7 @@ test('asserts that it resolve nestled tree consisting of only singletons', () =>
       fn();
     }
   }
-  __registerMetaData(B, [C, D]);
+  __sprinkelMetaData(B, [C, D]);
 
   @Singleton()
   class A {
@@ -40,7 +40,7 @@ test('asserts that it resolve nestled tree consisting of only singletons', () =>
       fn();
     }
   }
-  __registerMetaData(A, [C, B]);
+  __sprinkelMetaData(A, [C, B]);
 
   function regardless_of_resolved_order_this_should_not_throw(a: A, b: B, c: C, d: D): void {
     expect(c).toBe(a.c);
@@ -517,7 +517,7 @@ test('asserts that it resolve nestled tree consisting of only scopes', () => {
       fn();
     }
   }
-  __registerMetaData(B, [C, D]);
+  __sprinkelMetaData(B, [C, D]);
 
   @Scoped()
   class A {
@@ -525,7 +525,7 @@ test('asserts that it resolve nestled tree consisting of only scopes', () => {
       fn();
     }
   }
-  __registerMetaData(A, [C, B]);
+  __sprinkelMetaData(A, [C, B]);
 
   function regardless_of_resolved_order_this_should_not_throw(a: A, b: B, c: C, d: D): void {
     expect(a.c).toBe(a.b.c);
@@ -1001,7 +1001,7 @@ test('asserts that it resolve nestled tree consisting of only transients', () =>
       fn();
     }
   }
-  __registerMetaData(B, [C, D]);
+  __sprinkelMetaData(B, [C, D]);
 
   @Transient()
   class A {
@@ -1009,7 +1009,7 @@ test('asserts that it resolve nestled tree consisting of only transients', () =>
       fn();
     }
   }
-  __registerMetaData(A, [C, B]);
+  __sprinkelMetaData(A, [C, B]);
 
   function regardless_of_resolved_order_this_should_not_throw(a: A, b: B, c: C, d: D): void {
     expect(a.c).not.toBe(a.b.c);
@@ -1497,7 +1497,7 @@ test('asserts that it resolve nestled tree consisting of mixed lifetimes', () =>
       fn();
     }
   }
-  __registerMetaData(B, [C, D]);
+  __sprinkelMetaData(B, [C, D]);
 
   @Transient()
   class A {
@@ -1507,7 +1507,7 @@ test('asserts that it resolve nestled tree consisting of mixed lifetimes', () =>
       fn();
     }
   }
-  __registerMetaData(A, [C, B]);
+  __sprinkelMetaData(A, [C, B]);
 
   function regardless_of_resolved_order_this_should_not_throw(a: A, b: B, c: C, d: D): void {
     expect(a.c).toBe(a.b.c);
@@ -1978,7 +1978,7 @@ test('asserts that it throw an error if cyclic dependency is detected', () => {
   class A {
     constructor(public a: A) {}
   }
-  __registerMetaData(A, [A]);
+  __sprinkelMetaData(A, [A]);
 
   expect(() => resolve(A)).toThrow();
 
@@ -1986,7 +1986,7 @@ test('asserts that it throw an error if cyclic dependency is detected', () => {
   class B {
     constructor(public b: B) {}
   }
-  __registerMetaData(B, [B]);
+  __sprinkelMetaData(B, [B]);
 
   expect(() => resolve(B)).toThrow();
 
@@ -1994,7 +1994,7 @@ test('asserts that it throw an error if cyclic dependency is detected', () => {
   class C {
     constructor(public c: C) {}
   }
-  __registerMetaData(C, [C]);
+  __sprinkelMetaData(C, [C]);
 
   expect(() => resolve(C)).toThrow();
 });
@@ -2025,7 +2025,7 @@ test('asserts that it throw an error if an dependency is not registered', () => 
       // Empty
     }
   }
-  __registerMetaData(A, [X]);
+  __sprinkelMetaData(A, [X]);
 
   expect(() => resolve(A)).toThrow();
 });

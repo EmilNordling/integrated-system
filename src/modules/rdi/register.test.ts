@@ -1,5 +1,5 @@
 import { Scoped, Singleton, Transient } from './attributes';
-import { __registerMetaData } from './meta';
+import { __sprinkelMetaData } from './meta';
 import { resolve } from './resolve/mod';
 import { flushAll } from './flush';
 import { getRegisteredService, register } from './register';
@@ -96,7 +96,7 @@ test('asserts that it resolve singleton with mocked dependency', () => {
 
     constructor(public readonly a: A) {}
   }
-  __registerMetaData(B, [A]);
+  __sprinkelMetaData(B, [A]);
 
   register(A, {
     useClass: class Mock {
@@ -121,7 +121,7 @@ test('asserts that it resolve scoped with mocked dependency', () => {
 
     constructor(public readonly a: A) {}
   }
-  __registerMetaData(B, [A]);
+  __sprinkelMetaData(B, [A]);
 
   register(A, {
     useClass: class Mock {
@@ -146,7 +146,7 @@ test('asserts that it resolve transient with mocked dependency', () => {
 
     constructor(public a: A) {}
   }
-  __registerMetaData(B, [A]);
+  __sprinkelMetaData(B, [A]);
 
   register(A, {
     useClass: class Mock {

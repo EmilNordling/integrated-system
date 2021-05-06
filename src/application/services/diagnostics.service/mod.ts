@@ -1,6 +1,6 @@
 import { Singleton } from '@modules/rdi/attributes';
-import { __registerMetaData } from '@modules/rdi/meta';
-import { TraceSourceService } from './trace_source.service';
+import { __sprinkelMetaData } from '@modules/rdi/meta';
+import { TraceSourceService } from '../trace_source.service/mod';
 
 @Singleton()
 export class DiagnosticsService {
@@ -9,4 +9,4 @@ export class DiagnosticsService {
   }
 }
 // A vite plugin will be added later
-__registerMetaData(DiagnosticsService, [TraceSourceService]);
+__sprinkelMetaData(DiagnosticsService, [TraceSourceService]);

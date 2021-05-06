@@ -4,7 +4,7 @@ const spacesApiModelMock: SpacesApiModel = {
   spaces: [
     {
       icon: '',
-      name: 'Tinga',
+      name: 'api 1',
       iconBlurHash: '',
       id: '106114d3-6a1f-42ce-bdd0-e8c8bbd27bb2',
       isDefault: true,
@@ -12,7 +12,7 @@ const spacesApiModelMock: SpacesApiModel = {
     },
     {
       icon: '',
-      name: 'Tinga 2',
+      name: 'api 2',
       iconBlurHash: '',
       id: 'fee852dd-3819-49ec-a996-2d2b849979d8',
       isDefault: false,

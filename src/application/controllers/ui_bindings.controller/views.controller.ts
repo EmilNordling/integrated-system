@@ -1,7 +1,7 @@
 import { SpacesApiService } from '@api/spaces_api.service';
 import { Presentation } from '@modules/presentation/mod';
 import { Singleton } from '@modules/rdi/attributes';
-import { __registerMetaData } from '@modules/rdi/meta';
+import { __sprinkelMetaData } from '@modules/rdi/meta';
 import { ApplicationService, BootCycleEvents } from '@services/application.service';
 import { DiagnosticsService } from '@services/diagnostics.service/mod';
 import type { SpacesApiModel } from '@api/models/spaces_api_model';
@@ -19,7 +19,8 @@ interface PresentationModel {
 
 @Singleton()
 export class ViewsController {
-  private static readonly views: Readonly<ViewStackModel[]> = [
+  private static readonly TRACE_ORIGIN = 'ViewsController';
+  private static readonly INVARIABLE_VIEWS: Readonly<ViewStackModel[]> = [
     {
       id: 'static_home',
       icon: 'eva_wifi_off',
@@ -29,7 +30,7 @@ export class ViewsController {
     {
       id: 'static_analytic',
       icon: 'eva_trending',
-      routeTo: '/analytic',
+      routeTo: 'analytic',
       title: 'analytic',
     },
   ];
@@ -63,11 +64,11 @@ export class ViewsController {
   }
 
   private async queueAfterBootCycle(): Promise<void> {
-    this.diagnostics.traceSource.info('Views Boot_After');
+    this.diagnostics.traceSource.info('Views Boot_After', ViewsController.TRACE_ORIGIN);
     // add routes from loaded extensions
 
     this.routes.suspend(this.spacesApi.getAll(), (response) => {
-      const routes: ViewStackModel[] = [...ViewsController.views];
+      const routes: ViewStackModel[] = [...ViewsController.INVARIABLE_VIEWS];
 
       const apiRoutes = this.mapOverSpacesApiResponse(response);
       routes.push(...apiRoutes);
@@ -101,4 +102,4 @@ export class ViewsController {
   }
 }
 // A vite plugin will be added later
-__registerMetaData(ViewsController, [SpacesApiService, DiagnosticsService, ApplicationService]);
+__sprinkelMetaData(ViewsController, [SpacesApiService, DiagnosticsService, ApplicationService]);

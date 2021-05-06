@@ -5,7 +5,7 @@ import type { Resolution } from './_resolution';
 // This step's responsibility is to check for the requested instance and
 // return it.
 
-export function retrieveStep<T>(resolution: Resolution<T>) {
+export function retrieveStep<T>(resolution: Resolution<T>): T {
   if (resolution.contexts == null) throw new Error('steps order are wrong, expected branch -> produce -> retrieve');
 
   const [globalContext, scopedContext, [transientRoot, localContext]] = resolution.contexts;

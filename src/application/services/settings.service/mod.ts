@@ -1,4 +1,4 @@
-import { __registerMetaData } from '@modules/rdi/meta';
+import { __sprinkelMetaData } from '@modules/rdi/meta';
 import { Singleton } from '@modules/rdi/mod';
 import { ModalService } from '@services/modal.service/mod';
 
@@ -8,4 +8,4 @@ export class SettingsService {
     // Empty
   }
 }
-__registerMetaData(SettingsService, [ModalService]);
+__sprinkelMetaData(SettingsService, [ModalService]);

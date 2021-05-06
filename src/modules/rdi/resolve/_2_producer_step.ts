@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Context, globalContext } from '../_context';
 import { Lifetimes, Token } from '../_common';
 import { registeredServices } from '../_registration';
@@ -6,7 +7,7 @@ import type { Resolution, ResolutionContext, ResolutionDeps } from './_resolutio
 // ----------------------------- Producer step -----------------------------
 // This step's responsibility is to either instantiate a service or retrieve
 // an already instantiated service from a context:
-// Singelton -> Global context, one instance per registration
+// Singleton -> Global context, one instance per registration
 // Scoped    -> Context within this scope, one instance per registration
 // Transient -> Context within this scope, many instances per registration
 
@@ -24,7 +25,7 @@ function retrieveArgs(id: Token, [deps, context]: readonly [deps: ResolutionDeps
     if (lookupDependency.lifetime === Lifetimes.Singleton) {
       const dependency = globalContext.retrieve(lookupDependency.registrationId);
       if (dependency === undefined) {
-        throw new Error(`Singleton ${'anonymous'} service has not been resolved yet`);
+        throw new Error(`Singleton >>anonymous<< service has not been resolved yet`);
       }
 
       args.push(dependency);
@@ -35,7 +36,7 @@ function retrieveArgs(id: Token, [deps, context]: readonly [deps: ResolutionDeps
     if (lookupDependency.lifetime === Lifetimes.Scoped) {
       const alreadyResolvedDependency = scopedContext.retrieve(lookupDependency.registrationId);
       if (alreadyResolvedDependency === undefined) {
-        throw new Error(`Singleton ${'anonymous'} service has not been resolved yet`);
+        throw new Error(`Singleton >>anonymous<< service has not been resolved yet`);
       }
 
       args.push(alreadyResolvedDependency);
@@ -52,7 +53,7 @@ function retrieveArgs(id: Token, [deps, context]: readonly [deps: ResolutionDeps
       const transientInstances = transientContext.retrieve(parentId) ?? [];
       const registeredCtorBasedOnLookupDependency = registeredServices.get(lookupDependency.registrationId);
       if (registeredCtorBasedOnLookupDependency === undefined) {
-        throw new Error(`${'anonymous'} is not registered`);
+        throw new Error(`>>anonymous<< is not registered`);
       }
 
       const findFirstMatchingCtorIndex = transientInstances.findIndex((transientInstance) => {
@@ -103,7 +104,7 @@ export function producerStep<T>(resolution: Resolution<T>): void {
     for (const { data } of edges) {
       const lookupRegistered = registeredServices.get(data.registrationId);
       if (lookupRegistered === undefined) {
-        throw new Error(`${'anonymous'} is not registered`);
+        throw new Error(`>>anonymous<< is not registered`);
       }
 
       switch (data.lifetime) {

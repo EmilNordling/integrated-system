@@ -431,7 +431,7 @@ test('asserts that gracefulDegradation works with initial state', async () => {
   await findByText(/broken/i);
 });
 
-test('asserts that isMutable returns correct value', async (done) => {
+test('asserts that isMutable returns correct value', (done) => {
   const presentation = new ConcurrentPresentation(getTypicalState());
 
   presentation.suspend(fakeApi.get(), () => {

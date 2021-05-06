@@ -1,5 +1,5 @@
 import { Singleton } from '@modules/rdi/mod';
-import { __registerMetaData } from '@modules/rdi/meta';
+import { __sprinkelMetaData } from '@modules/rdi/meta';
 import { AuthApiService } from '@api/auth_api.service';
 import type { UserModel } from '@api/models/user_model';
 
@@ -25,4 +25,4 @@ export class AuthService {
   }
 }
 // A vite plugin will be added later
-__registerMetaData(AuthService, [AuthApiService]);
+__sprinkelMetaData(AuthService, [AuthApiService]);

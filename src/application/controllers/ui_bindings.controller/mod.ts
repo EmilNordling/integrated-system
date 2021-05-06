@@ -1,5 +1,5 @@
 import { Singleton } from '@modules/rdi/attributes';
-import { __registerMetaData } from '@modules/rdi/meta';
+import { __sprinkelMetaData } from '@modules/rdi/meta';
 import { ViewsController } from './views.controller';
 
 @Singleton()
@@ -8,4 +8,4 @@ export class UiBindingsController {
     // Empty
   }
 }
-__registerMetaData(UiBindingsController, [ViewsController]);
+__sprinkelMetaData(UiBindingsController, [ViewsController]);
