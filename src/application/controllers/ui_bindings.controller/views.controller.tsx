@@ -4,6 +4,7 @@ import { Singleton } from '@modules/rdi/attributes';
 import { __sprinkelMetaData } from '@modules/rdi/meta';
 import { ApplicationService, BootCycleEvents } from '@services/application.service';
 import { DiagnosticsService } from '@services/diagnostics.service/mod';
+import { HomeView } from '@views/home_view/mod';
 import type { SpacesApiModel } from '@api/models/spaces_api_model';
 
 export interface ViewStackModel {
@@ -11,6 +12,8 @@ export interface ViewStackModel {
   title: string;
   routeTo: string;
   icon: string | null;
+  listable: boolean;
+  jsxComponent: () => JSX.Element;
 }
 
 interface PresentationModel {
@@ -26,17 +29,23 @@ export class ViewsController {
       icon: 'eva_wifi_off',
       routeTo: '',
       title: 'Home',
+      listable: true,
+      jsxComponent: HomeView,
     },
     {
       id: 'static_analytic',
       icon: 'eva_trending',
       routeTo: 'analytic',
       title: 'analytic',
+      listable: true,
+      jsxComponent: function AnalyticRoute() {
+        return <div></div>;
+      },
     },
   ];
 
   public readonly routes = Presentation.createConcurrent<PresentationModel>();
-  private readonly exhaustibleAfterCycle: ViewStackModel[] = [];
+  private readonly exhaustibleAfterCycle: Readonly<ViewStackModel>[] = [];
 
   constructor(
     private readonly spacesApi: SpacesApiService,
@@ -95,6 +104,10 @@ export class ViewsController {
         icon: space.icon,
         routeTo: space.id,
         title: space.name,
+        listable: space.listable,
+        jsxComponent: function AnalyticRoute() {
+          return <div></div>;
+        },
       });
     }
 

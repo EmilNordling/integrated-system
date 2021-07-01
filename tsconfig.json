@@ -24,6 +24,8 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@api/*":         ["application/api/*"],
+      "@views/*":       ["application/invariable_views/*"],
+      "@routes/*":      ["routes/*"],
       "@modules/*":     ["modules/*"],
       "@services/*":    ["application/services/*"],
       "@components/*":  ["components/*"],

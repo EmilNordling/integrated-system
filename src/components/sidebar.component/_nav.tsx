@@ -82,9 +82,11 @@ export function Nav(_: Props): JSX.Element {
 
   return (
     <S_Nav>
-      {presentation.routes.map((route) => (
-        <LLink key={route.id} model={route} />
-      ))}
+      {presentation.routes
+        .filter((route) => route.listable)
+        .map((route) => (
+          <LLink key={route.id} model={route} />
+        ))}
     </S_Nav>
   );
 }

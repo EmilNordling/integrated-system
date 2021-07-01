@@ -1,6 +1,7 @@
 {
   "deno.enable": false,
   "cSpell.words": [
+    "Scrollable",
     "esbuild",
     "modulz",
     "sprinkel",

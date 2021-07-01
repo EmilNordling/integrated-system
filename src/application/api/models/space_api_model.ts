@@ -5,4 +5,5 @@ export interface SpaceApiModel {
   name: string;
   isDefault: boolean;
   permissions: number;
+  listable: boolean;
 }
